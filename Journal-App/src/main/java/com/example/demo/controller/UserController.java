@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.LoginDTO;
+import com.example.demo.dto.SignUpDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -53,15 +55,18 @@ private final UserService userService;
 
 
 //
+//    // Регистрация пользователя
 //    @PostMapping("/register")
-//    public User register(@RequestBody User user) {
-//        return userService.register(user);
-//
+//    public ResponseEntity<String> register(@RequestBody SignUpDTO signUpDto) {
+//        userService.saveUser(signUpDto);
+//        return ResponseEntity.ok("User registered successfully");
 //    }
 //
+//    // Логин пользователя
 //    @PostMapping("/login")
-//    public String login(@RequestBody User user) {
-//
-//        return userService.verify(user);
+//    public ResponseEntity<String> login(@RequestBody LoginDTO loginDto) {
+//        String token = userService.loginUser(loginDto.getEmail(), loginDto.getPassword());
+//        return ResponseEntity.ok(token);
 //    }
+
 }
