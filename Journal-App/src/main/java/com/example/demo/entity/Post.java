@@ -3,7 +3,10 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -20,14 +23,18 @@ public class Post {
     @Column(name = "content")
     private String content;
 
-//    @Column(name = "user_id")
+//    @Column(name = "user_id", insertable = false, updatable = false)
 //    private Integer userId;
 
     @Column(name = "status", length = 50)
     private String status;
 
-    @Column(name = "image", length = 255)
+    @Column(name = "ImageData", length = 255)
     private String image;
+
+//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<ImageData> images = new ArrayList<>();
+
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -40,18 +47,22 @@ public class Post {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+
     @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         this.createdAt = now;
         this.updatedAt = now;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
-//    @PrePersist
-//    public void prePersist() {
-//        if (createdAt == null) {
-//            createdAt = LocalDateTime.now();
-//        }
-//    }
+
 
 
