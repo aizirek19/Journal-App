@@ -73,7 +73,7 @@ public class StorageController {
     public ResponseEntity<?> downloadImage(@PathVariable String fileName) {
         byte[] imageData = service.downloadImage(fileName);
         return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.valueOf("image/jpeg"))
+                .contentType(MediaType.valueOf("image/jpg"))
                 .body(imageData);
     }
     @DeleteMapping("/delete/{fileName}")
